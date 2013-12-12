@@ -35,4 +35,8 @@
             <url>http://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
+    <properties>
+        <!-- TODO until bc4c132 in 1.545, or below 1.536 -->
+        <concurrency>1</concurrency>
+    </properties>
 </project>
