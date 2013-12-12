@@ -11,6 +11,7 @@
     <packaging>hpi</packaging>
     <name>Secure Requester Whitelist Plugin</name>
     <description>Allows an administrator to specify sites trusted to make JSONP or primitive-XPath REST API requests.</description>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/Secure+Requester+Whitelist+Plugin</url>
     <licenses>
         <license>
             <name>MIT License</name>
