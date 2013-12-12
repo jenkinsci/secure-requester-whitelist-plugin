@@ -7,7 +7,7 @@
         <version>1.537</version>
     </parent>
     <artifactId>secure-requester-whitelist</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <name>Secure Requester Whitelist Plugin</name>
     <description>Allows an administrator to specify sites trusted to make JSONP or primitive-XPath REST API requests.</description>
