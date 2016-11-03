@@ -25,7 +25,7 @@
 package org.jenkinsci.plugins.secure_requester_whitelist;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
-import com.gargoylesoftware.htmlunit.WebRequestSettings;
+import com.gargoylesoftware.htmlunit.WebRequest;
 import java.net.URL;
 import net.sf.json.JSONObject;
 import static org.junit.Assert.*;
@@ -39,10 +39,13 @@ public class SecureRequesterImplTest {
     @Rule public JenkinsRule r = new JenkinsRule();
 
     @PresetData(PresetData.DataSet.NO_ANONYMOUS_READACCESS)
-    @Test public void authorizing() throws Exception {
+    @Test
+    public void authorizing() throws Exception {
         assertJSONP(null, 403);
         assertJSONP("http://apache.org/", 403);
+
         Whitelist.get().configure(null, new JSONObject().accumulate("allowNoReferer", true).accumulate("domains", "apache.org jenkins-ci.org"));
+
         assertJSONP(null, 200);
         assertJSONP("http://apache.org/", 200);
         assertJSONP("http://jenkins-ci.org/", 200);
@@ -51,13 +54,15 @@ public class SecureRequesterImplTest {
         assertJSONP("huh?", 403);
     }
 
-    private void assertJSONP(String referer, int expectedStatusCode) throws Exception {
-        JenkinsRule.WebClient wc = r.createWebClient();
+    private void assertJSONP(final String referer, final int expectedStatusCode) throws Exception {
+        final JenkinsRule.WebClient wc = r.createWebClient();
         wc.login("alice");
-        WebRequestSettings req = new WebRequestSettings(new URL(wc.getContextPath() + "api/json?jsonp"));
+
+        final WebRequest req = new WebRequest(new URL(wc.getContextPath() + "api/json?jsonp"));
         if (referer != null) {
             req.setAdditionalHeader("Referer", referer);
         }
+
         try {
             wc.getPage(req);
             assertEquals(expectedStatusCode, 200);

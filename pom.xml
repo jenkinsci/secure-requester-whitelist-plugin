@@ -3,9 +3,9 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <!-- TODO switch to 1.532.2 if JENKINS-16936 is backported -->
-        <version>1.537</version>
+        <version>2.17</version>
     </parent>
+
     <artifactId>secure-requester-whitelist</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>hpi</packaging>
@@ -18,25 +18,30 @@
             <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
+
     <scm>
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
     </scm>
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
             <url>http://repo.jenkins-ci.org/public/</url>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>repo.jenkins-ci.org</id>
             <url>http://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
+
     <properties>
-        <!-- TODO until bc4c132 in 1.545, or below 1.536 -->
-        <concurrency>1</concurrency>
+        <jenkins.version>1.580.1</jenkins.version>
+        <java.level>6</java.level>
+        <findbugs.failOnError>false</findbugs.failOnError>
     </properties>
 </project>
