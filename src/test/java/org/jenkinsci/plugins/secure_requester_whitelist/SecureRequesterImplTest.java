@@ -39,13 +39,10 @@ public class SecureRequesterImplTest {
     @Rule public JenkinsRule r = new JenkinsRule();
 
     @PresetData(PresetData.DataSet.NO_ANONYMOUS_READACCESS)
-    @Test
-    public void authorizing() throws Exception {
+    @Test public void authorizing() throws Exception {
         assertJSONP(null, 403);
         assertJSONP("http://apache.org/", 403);
-
         Whitelist.get().configure(null, new JSONObject().accumulate("allowNoReferer", true).accumulate("domains", "apache.org jenkins-ci.org"));
-
         assertJSONP(null, 200);
         assertJSONP("http://apache.org/", 200);
         assertJSONP("http://jenkins-ci.org/", 200);
