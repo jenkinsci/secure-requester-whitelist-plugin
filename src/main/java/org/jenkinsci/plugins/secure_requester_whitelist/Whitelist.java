@@ -24,6 +24,7 @@
 
 package org.jenkinsci.plugins.secure_requester_whitelist;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
 import jenkins.model.GlobalConfiguration;
 import jenkins.model.GlobalConfigurationCategory;
@@ -33,6 +34,7 @@ import org.kohsuke.stapler.StaplerRequest;
 
 @Extension public class Whitelist extends GlobalConfiguration {
     
+    @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
     public static Whitelist get() {
         return Jenkins.getInstance().getDescriptorByType(Whitelist.class);
     }
