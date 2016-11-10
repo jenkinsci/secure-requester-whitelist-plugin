@@ -7,7 +7,7 @@
     </parent>
 
     <artifactId>secure-requester-whitelist</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <packaging>hpi</packaging>
     <name>Secure Requester Whitelist Plugin</name>
     <description>Allows an administrator to specify sites trusted to make JSONP or primitive-XPath REST API requests.</description>
@@ -23,7 +23,8 @@
         <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    </scm>
+      <tag>secure-requester-whitelist-1.1</tag>
+  </scm>
 
     <repositories>
         <repository>
