@@ -44,6 +44,7 @@
     <properties>
         <jenkins.version>2.60.3</jenkins.version>
         <java.level>8</java.level>
+        <jcasc.version>1.27</jcasc.version>
     </properties>
 
     <dependencies>
@@ -57,6 +58,20 @@
             <groupId>org.jenkins-ci.plugins.icon-shim</groupId>
             <artifactId>icon-set</artifactId>
             <version>2.0.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JCasC compatibility -->
+        <dependency>
+            <groupId>io.jenkins</groupId>
+            <artifactId>configuration-as-code</artifactId>
+            <version>${jcasc.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jenkins</groupId>
+            <artifactId>configuration-as-code</artifactId>
+            <version>${jcasc.version}</version>
+            <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -30,19 +30,25 @@ import jenkins.model.GlobalConfiguration;
 import jenkins.model.GlobalConfigurationCategory;
 import jenkins.model.Jenkins;
 import net.sf.json.JSONObject;
+import org.jenkinsci.Symbol;
+import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.StaplerRequest;
 
-@Extension public class Whitelist extends GlobalConfiguration {
+@Extension
+@Symbol("secure_requester_whitelist")
+public class Whitelist extends GlobalConfiguration {
     
     @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
     public static Whitelist get() {
         return Jenkins.getInstance().getDescriptorByType(Whitelist.class);
     }
-    
+
     private boolean allowNoReferer;
     private String domains;
     // TODO perhaps add an option to allow when ANONYMOUS has READ permission on the bean
 
+    @DataBoundConstructor
     public Whitelist() {
         load();
     }
@@ -59,9 +65,20 @@ import org.kohsuke.stapler.StaplerRequest;
         return domains;
     }
 
+    @DataBoundSetter
+    public void setAllowNoReferer(boolean allowNoReferer) {
+        this.allowNoReferer = allowNoReferer;
+    }
+
+    @DataBoundSetter
+    public void setDomains(String domains) {
+        this.domains = domains;
+    }
+
     @Override public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
-        allowNoReferer = json.optBoolean("allowNoReferer");
-        domains = json.getString("domains");
+        req.bindJSON(this, json);
+//        allowNoReferer = json.optBoolean("allowNoReferer");
+//        domains = json.getString("domains");
         save();
         return true;
     }
