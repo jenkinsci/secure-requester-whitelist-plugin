@@ -77,8 +77,6 @@ public class Whitelist extends GlobalConfiguration {
 
     @Override public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
         req.bindJSON(this, json);
-//        allowNoReferer = json.optBoolean("allowNoReferer");
-//        domains = json.getString("domains");
         save();
         return true;
     }
