@@ -36,7 +36,7 @@ import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.StaplerRequest;
 
 @Extension
-@Symbol("secure_requester_whitelist")
+@Symbol("secureRequesterWhitelist")
 public class Whitelist extends GlobalConfiguration {
     
     @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
