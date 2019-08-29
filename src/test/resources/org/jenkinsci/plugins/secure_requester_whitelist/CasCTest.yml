@@ -1,4 +1,4 @@
 security:
-  secure_requester_whitelist:
+  secureRequesterWhitelist:
     allowNoReferer: true
     domains: "acme.org jenkins.io"
