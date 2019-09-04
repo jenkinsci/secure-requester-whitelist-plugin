@@ -42,7 +42,10 @@ public class SecureRequesterImplTest {
     @Test public void authorizing() throws Exception {
         assertJSONP(null, 403);
         assertJSONP("http://apache.org/", 403);
-        Whitelist.get().configure(null, new JSONObject().accumulate("allowNoReferer", true).accumulate("domains", "apache.org jenkins-ci.org"));
+        final Whitelist whitelist = Whitelist.get();
+        whitelist.setAllowNoReferer(true);
+        whitelist.setDomains("apache.org jenkins-ci.org");
+        whitelist.save();
         assertJSONP(null, 200);
         assertJSONP("http://apache.org/", 200);
         assertJSONP("http://jenkins-ci.org/", 200);
