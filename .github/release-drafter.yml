@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: secure-requester-whitelist-$NEXT_MINOR_VERSION
