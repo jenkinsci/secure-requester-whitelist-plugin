@@ -1,15 +1,14 @@
 # Description
 
-Allows an administrator to specify sites trusted to make JSONP or
-primitive-XPath REST API requests.
+Allows an administrator to specify sites trusted to make JSONP or primitive-XPath REST API requests.
 
 # Configuration
 
-Use *Manage Jenkins » Global Security* to make this configuration.
+Use *Manage Jenkins » Configure Global Security* to make this configuration.
 
-![](docs/images/Captura_de_pantalla_2016-11-03_a_las_08.50.53.png)
+![](docs/images/1.png)
 
-![](docs/images/Captura_de_pantalla_2016-11-03_a_las_08.51.12.png)
+![](docs/images/2.png)
 
 - Allow requests without Referer: if checked, then requests with no HTTP Referer will be allowed.
 - Domains from which to allow requests: a space and/or newline-separated list of domains to allow requests from.
