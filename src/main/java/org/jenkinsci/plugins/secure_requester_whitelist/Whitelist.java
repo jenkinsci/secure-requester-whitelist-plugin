@@ -35,13 +35,14 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.StaplerRequest;
 
+import javax.annotation.Nonnull;
+
 @Extension
 @Symbol("secureRequesterWhitelist")
 public class Whitelist extends GlobalConfiguration {
-    
-    @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+
     public static Whitelist get() {
-        return Jenkins.getInstance().getDescriptorByType(Whitelist.class);
+        return Jenkins.get().getDescriptorByType(Whitelist.class);
     }
 
     private boolean allowNoReferer;
@@ -53,7 +54,8 @@ public class Whitelist extends GlobalConfiguration {
         load();
     }
 
-    @Override public GlobalConfigurationCategory getCategory() {
+    @Nonnull @Override
+    public GlobalConfigurationCategory getCategory() {
         return GlobalConfigurationCategory.get(GlobalConfigurationCategory.Security.class);
     }
 
@@ -75,7 +77,7 @@ public class Whitelist extends GlobalConfiguration {
         this.domains = domains;
     }
 
-    @Override public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
+    @Override public boolean configure(StaplerRequest req, JSONObject json) {
         req.bindJSON(this, json);
         save();
         return true;

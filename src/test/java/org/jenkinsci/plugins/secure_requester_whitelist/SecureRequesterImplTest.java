@@ -27,19 +27,23 @@ package org.jenkinsci.plugins.secure_requester_whitelist;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebRequest;
 import java.net.URL;
-import net.sf.json.JSONObject;
+
+import hudson.security.FullControlOnceLoggedInAuthorizationStrategy;
 import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
-import org.jvnet.hudson.test.recipes.PresetData;
 
 public class SecureRequesterImplTest {
 
     @Rule public JenkinsRule r = new JenkinsRule();
 
-    @PresetData(PresetData.DataSet.NO_ANONYMOUS_READACCESS)
     @Test public void authorizing() throws Exception {
+        r.jenkins.setSecurityRealm(r.createDummySecurityRealm());
+        final FullControlOnceLoggedInAuthorizationStrategy a = new FullControlOnceLoggedInAuthorizationStrategy();
+        a.setAllowAnonymousRead(false);
+        r.jenkins.setAuthorizationStrategy(a);
+
         assertJSONP(null, 403);
         assertJSONP("http://apache.org/", 403);
         final Whitelist whitelist = Whitelist.get();
