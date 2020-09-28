@@ -24,7 +24,6 @@
 
 package org.jenkinsci.plugins.secure_requester_whitelist;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
 import jenkins.model.GlobalConfiguration;
 import jenkins.model.GlobalConfigurationCategory;
