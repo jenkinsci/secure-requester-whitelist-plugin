@@ -48,18 +48,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
-            <artifactId>matrix-auth</artifactId>
-            <version>1.6</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jenkins-ci.plugins.icon-shim</groupId>
-            <artifactId>icon-set</artifactId>
-            <version>2.0.3</version>
-            <scope>test</scope>
-        </dependency>
         <!-- JCasC compatibility -->
         <dependency>
             <groupId>io.jenkins</groupId>
