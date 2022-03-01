@@ -24,6 +24,7 @@
 
 package org.jenkinsci.plugins.secure_requester_whitelist;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import jenkins.model.GlobalConfiguration;
 import jenkins.model.GlobalConfigurationCategory;
@@ -33,8 +34,6 @@ import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.StaplerRequest;
-
-import javax.annotation.Nonnull;
 
 @Extension
 @Symbol("secureRequesterWhitelist")
@@ -53,8 +52,7 @@ public class Whitelist extends GlobalConfiguration {
         load();
     }
 
-    @Nonnull @Override
-    public GlobalConfigurationCategory getCategory() {
+    @NonNull @Override public GlobalConfigurationCategory getCategory() {
         return GlobalConfigurationCategory.get(GlobalConfigurationCategory.Security.class);
     }
 
