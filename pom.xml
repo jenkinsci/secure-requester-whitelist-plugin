@@ -10,7 +10,7 @@
     <artifactId>secure-requester-whitelist</artifactId>
     <version>1.8-SNAPSHOT</version>
     <packaging>hpi</packaging>
-    <name>Secure Requester Whitelist Plugin</name>
+    <name>Secure Requester Allowlist Plugin</name>
     <description>Allows an administrator to specify sites trusted to make JSONP or primitive-XPath REST API requests.</description>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <licenses>

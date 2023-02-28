@@ -36,7 +36,7 @@ import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.StaplerRequest;
 
 @Extension
-@Symbol("secureRequesterWhitelist")
+@Symbol({"secureRequesterAllowlist", "secureRequesterWhitelist"})
 public class Whitelist extends GlobalConfiguration {
 
     public static Whitelist get() {
