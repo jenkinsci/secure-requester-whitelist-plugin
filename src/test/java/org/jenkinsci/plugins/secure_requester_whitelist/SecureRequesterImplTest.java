@@ -24,8 +24,8 @@
 
 package org.jenkinsci.plugins.secure_requester_whitelist;
 
-import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
-import com.gargoylesoftware.htmlunit.WebRequest;
+import org.htmlunit.FailingHttpStatusCodeException;
+import org.htmlunit.WebRequest;
 import java.net.URL;
 
 import hudson.security.FullControlOnceLoggedInAuthorizationStrategy;
