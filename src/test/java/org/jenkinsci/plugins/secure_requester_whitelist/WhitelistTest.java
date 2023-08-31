@@ -24,8 +24,8 @@
 
 package org.jenkinsci.plugins.secure_requester_whitelist;
 
-import com.gargoylesoftware.htmlunit.html.HtmlCheckBoxInput;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import org.htmlunit.html.HtmlCheckBoxInput;
+import org.htmlunit.html.HtmlForm;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
