@@ -30,11 +30,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.StringTokenizer;
 import jenkins.security.SecureRequester;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 @Extension public class SecureRequesterImpl implements SecureRequester {
 
-    @Override public boolean permit(StaplerRequest req, Object bean) {
+    @Override public boolean permit(StaplerRequest2 req, Object bean) {
         Whitelist wl = Whitelist.get();
         String referer = req.getReferer();
         if (referer == null) {
