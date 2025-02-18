@@ -33,7 +33,7 @@ import net.sf.json.JSONObject;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 @Extension
 @Symbol("secureRequesterWhitelist")
@@ -74,7 +74,7 @@ public class Whitelist extends GlobalConfiguration {
         this.domains = domains;
     }
 
-    @Override public boolean configure(StaplerRequest req, JSONObject json) {
+    @Override public boolean configure(StaplerRequest2 req, JSONObject json) {
         req.bindJSON(this, json);
         save();
         return true;
