@@ -45,7 +45,8 @@
         <gitHubRepo>jenkinsci/secure-requester-whitelist-plugin</gitHubRepo>
         <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
         <jenkins.baseline>2.479</jenkins.baseline>
-        <jenkins.version>${jenkins.baseline}.1</jenkins.version>
+        <jenkins.version>${jenkins.baseline}.3</jenkins.version>
+        <ban-junit4-imports.skip>false</ban-junit4-imports.skip>
     </properties>
 
     <dependencyManagement>
@@ -53,7 +54,7 @@
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
                 <artifactId>bom-${jenkins.baseline}.x</artifactId>
-                <version>3893.v213a_42768d35</version>
+                <version>4969.v6ffa_18d90c9f</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
