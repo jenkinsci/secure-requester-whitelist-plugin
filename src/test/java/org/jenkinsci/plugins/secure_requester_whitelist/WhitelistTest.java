@@ -26,16 +26,26 @@ package org.jenkinsci.plugins.secure_requester_whitelist;
 
 import org.htmlunit.html.HtmlCheckBoxInput;
 import org.htmlunit.html.HtmlForm;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Rule;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 
-public class WhitelistTest {
+@WithJenkins
+class WhitelistTest {
 
-    @Rule public JenkinsRule r = new JenkinsRule();
+    private JenkinsRule r;
 
-    @Test public void configuration() throws Exception {
+    @BeforeEach
+    void beforeEach(JenkinsRule rule) {
+        r = rule;
+    }
+
+    @Test
+    void configuration() throws Exception {
         HtmlForm config = r.createWebClient().goTo("configureSecurity/").getFormByName("config");
         HtmlCheckBoxInput checkbox = config.getInputByName("_.allowNoReferer");
         checkbox.setChecked(true);
@@ -44,5 +54,4 @@ public class WhitelistTest {
         assertTrue(Whitelist.get().isAllowNoReferer());
         assertEquals("apache.org", Whitelist.get().getDomains());
     }
-
 }
