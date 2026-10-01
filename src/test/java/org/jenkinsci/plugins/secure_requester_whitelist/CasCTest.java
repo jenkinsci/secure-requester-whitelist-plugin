@@ -1,14 +1,16 @@
 package org.jenkinsci.plugins.secure_requester_whitelist;
 
-import io.jenkins.plugins.casc.misc.RoundTripAbstractTest;
+import io.jenkins.plugins.casc.misc.junit.jupiter.AbstractRoundTripTest;
 import org.jvnet.hudson.test.Issue;
-import org.jvnet.hudson.test.RestartableJenkinsRule;
+import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Issue("JENKINS-57616")
-public class CasCTest extends RoundTripAbstractTest {
+@WithJenkins
+class CasCTest extends AbstractRoundTripTest {
 
     @Override
     protected String configResource() {
@@ -16,7 +18,7 @@ public class CasCTest extends RoundTripAbstractTest {
     }
 
     @Override
-    protected void assertConfiguredAsExpected(RestartableJenkinsRule restartableJenkinsRule, String s) {
+    protected void assertConfiguredAsExpected(JenkinsRule restartableJenkinsRule, String s) {
         final Whitelist whitelist = Whitelist.get();
         assertTrue(whitelist.isAllowNoReferer());
         assertEquals("acme.org jenkins.io", whitelist.getDomains());
