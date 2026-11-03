@@ -29,16 +29,25 @@ import org.htmlunit.WebRequest;
 import java.net.URL;
 
 import hudson.security.FullControlOnceLoggedInAuthorizationStrategy;
-import static org.junit.Assert.*;
-import org.junit.Rule;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 
-public class SecureRequesterImplTest {
+@WithJenkins
+class SecureRequesterImplTest {
 
-    @Rule public JenkinsRule r = new JenkinsRule();
+    private JenkinsRule r;
 
-    @Test public void authorizing() throws Exception {
+    @BeforeEach
+    void beforeEach(JenkinsRule rule) {
+        r = rule;
+    }
+
+    @Test
+    void authorizing() throws Exception {
         r.jenkins.setSecurityRealm(r.createDummySecurityRealm());
         final FullControlOnceLoggedInAuthorizationStrategy a = new FullControlOnceLoggedInAuthorizationStrategy();
         a.setAllowAnonymousRead(false);
@@ -59,20 +68,18 @@ public class SecureRequesterImplTest {
     }
 
     private void assertJSONP(final String referer, final int expectedStatusCode) throws Exception {
-        final JenkinsRule.WebClient wc = r.createWebClient();
-        wc.login("alice");
+        try (JenkinsRule.WebClient wc = r.createWebClient()) {
+            wc.login("alice");
 
-        final WebRequest req = new WebRequest(new URL(wc.getContextPath() + "api/json?jsonp"));
-        if (referer != null) {
-            req.setAdditionalHeader("Referer", referer);
-        }
+            final WebRequest req = new WebRequest(new URL(wc.getContextPath() + "api/json?jsonp"));
+            if (referer != null) {
+                req.setAdditionalHeader("Referer", referer);
+            }
 
-        try {
             wc.getPage(req);
-            assertEquals(expectedStatusCode, 200);
+            assertEquals(200, expectedStatusCode);
         } catch (FailingHttpStatusCodeException x) {
             assertEquals(expectedStatusCode, x.getStatusCode());
         }
     }
-
 }
